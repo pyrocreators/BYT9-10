@@ -5,6 +5,28 @@ import java.util.*;
 import static org.junit.Assert.*;
 public class ClassTest {
     @Test
+    public void testClassInitializationInConstructor() {
+        String className = "Biology";
+        List<Student> students = new ArrayList<>();
+        students.add(new Student("John", "Doe", "john123", "password123", "B1"));
+        students.add(new Student("Alice", "Smith", "alice321", "pass456", "C2"));
+        Homework homework1 = new Homework(12, new ArrayList<Task>(), new Date());
+        Homework homework2 = new Homework(9, new ArrayList<Task>(), new Date());
+        List<Homework> homeworks = new ArrayList<>();
+        homeworks.add(homework1);
+        homeworks.add(homework2);
+        List<Tutor> tutors = new ArrayList<>();
+        tutors.add(new Tutor("Tutor", "One", "tutor1", "tutorpass", "advanced", "Biology", new ArrayList<>()));
+
+        Class aClass = new Class(className, students, homeworks, tutors);
+
+        assertEquals(className, aClass.getName());
+        assertEquals(Optional.of(2).get(), aClass.getNumberOfstudents());
+        assertEquals(students, aClass.getStudentList());
+        assertEquals(homeworks, aClass.getHomeworks());
+        assertEquals(tutors, aClass.getTutor());
+    }
+    @Test
     public void testAddAndRemoveStudent() {
         String className = "Physics";
         List<Student> students = new ArrayList<>();
